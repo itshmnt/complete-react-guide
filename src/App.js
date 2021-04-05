@@ -3,20 +3,35 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
+  state = {
+    persons: [
+      {name: "Max", age: 28},
+      {name: "Manu", age: 20},
+      {name: "Maxefwa", age: 48}
+    ],
+    otherState: 'some other value'
+  }
+  
+  switchNameHandler = () => {
+    //alert('was clicked');
+    this.setState({
+      persons: [
+        {name: "Maximillian", age: 28},
+        {name: "Manu", age: 20},
+        {name: "Maxefwa", age: 98}
+      ]
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Hi! I'm a React App!</h1>
         <p>I'm working.</p>
-        <Person name="Max"  age="29"/>
-        <Person name="Maxi"  age="35"/>
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> */}
+        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Racing</Person>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
       </div>
     );
   }
